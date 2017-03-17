@@ -1,0 +1,19 @@
+My system's accuracy calculated to be 12.8342694274 %. I'm unsure of the accuracy calculation was correct, because of possible parsing errors. You can see my output in POS.test.out to observe correct and incorrect tags (most seem correct as I eyeball it).
+
+Error 1:
+My system's accuracy calculation was very off (0.12%) because for some reason, I am printing an extra ')' at the end of each sentence. My algorithm seemed to use ')' as a tag for the end of each sentence, and calculate the probability of that tag along with other tags. I would have to debug further why that is the case, but it may be either a parsing or special-character error. 
+
+Error 2:
+Ghana. Predicted: IN. Actual: NP. It seems that the system didn't see Ghana in the test data, and thus couldn't predict a part of speech for Ghana. If we would have gathered data on words in the middle of the sentence that have a capitalized letter, we could have predicted it to be NP. 
+
+Error 3: 
+Certain words in the corpus had the same probabilities for multiple tags, and thus I had to pick the first tag without any other heuristic better choose. 
+
+Error 4:
+producer-consumer
+It might have been useful to gather tags for the first and second parts of this word phrase, in order to infer the tag for this word, even if it haven't seen it before in the train data.
+
+Error 5:
+HURRICANE
+It might have been useful to observe a word as all-capitalized, and infer it to be NP rather than NN (which is what my algorithm predicted, since it had not seen the word all capitalized before). One thing to note was that the algorithm accounted for differences based on capitalization, which is sometimes useful but other times can assume a word has not been seen even if it has, but just in a different capitalization-case.
+
